@@ -7,14 +7,14 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = os.environ.get("DEBUG", "False") == "True"
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:
-    ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(",")
+    ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
 
 
 CONTRIB_APPS = [
@@ -26,7 +26,11 @@ CONTRIB_APPS = [
     "django.contrib.staticfiles",
 ]
 
-PROJECT_APPS = []
+PROJECT_APPS = [
+    "apps.client.apps.ClientConfig",
+    "apps.mailing.apps.MailingConfig",
+    "apps.message.apps.MessageConfig",
+]
 
 THIRD_PARTY_APPS = [
     # REST API
@@ -69,14 +73,14 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 
 # DATABASE SETTINGS
-DB_PASSWORD = os.environ.get("DB_PASSWORD")
-DB_USER = os.environ.get("DB_USER")
-DB_HOST = os.environ.get("DB_HOST")
-DB_PORT = os.environ.get("DB_PORT")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_USER = os.getenv("DB_USER")
+DB_HOST = os.getenv("DB_HOST")
+DB_PORT = os.getenv("DB_PORT")
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": "postgres",
         "PASSWORD": DB_PASSWORD,
         "USER": DB_USER,
         "HOST": DB_HOST,
@@ -87,20 +91,20 @@ DATABASES = {
 # CELERY SETTINGS
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
-CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL")
-CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND")
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
 # SMTP SETTINGS
-EMAIL_BACKEND = os.environ.get("EMAIL_BACKEND", "django.core.mail.backends")
+EMAIL_BACKEND = os.getenv("EMAIL_BACKEND", "django.core.mail.backends")
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
-EMAIL_HOST = os.environ.get("EMAIL_HOST")
-EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-EMAIL_PORT = os.environ.get("EMAIL_PORT")
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
 DEFAULT_FROM_EMAIL = f"no-reply<{EMAIL_HOST_USER}>"
-
+os.en
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
