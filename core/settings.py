@@ -104,7 +104,7 @@ EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = os.getenv("EMAIL_PORT")
 DEFAULT_FROM_EMAIL = f"no-reply<{EMAIL_HOST_USER}>"
-os.en
+
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
