@@ -4,6 +4,7 @@ version: '3.0'
 services:
   db:
     image: postgres
+    container_name: sight-postgres
     ports:
       - "5432:5432"
     volumes:
@@ -16,6 +17,7 @@ services:
 
   redis:
     image: redis:6.2.6
+    container_name: sight-redis
     ports:
       - "6379:6379"
     restart: on-failure
