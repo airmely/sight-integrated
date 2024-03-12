@@ -68,7 +68,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "core.wsgi.application"
 
 
-# DATABASE
+# DATABASE SETTINGS
 DB_PASSWORD = os.environ.get("DB_PASSWORD")
 DB_USER = os.environ.get("DB_USER")
 DB_HOST = os.environ.get("DB_HOST")
@@ -84,6 +84,22 @@ DATABASES = {
     }
 }
 
+# CELERY SETTINGS
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND")
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+
+# SMTP SETTINGS
+EMAIL_BACKEND = os.environ.get("EMAIL_BACKEND", "django.core.mail.backends")
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
+EMAIL_HOST = os.environ.get("EMAIL_HOST")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = os.environ.get("EMAIL_PORT")
+DEFAULT_FROM_EMAIL = f"no-reply<{EMAIL_HOST_USER}>"
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
