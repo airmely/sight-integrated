@@ -36,6 +36,8 @@ THIRD_PARTY_APPS = [
     # REST API
     "rest_framework",
     "drf_yasg",
+    # OTHER APPS
+    "phonenumber_field",
 ]
 
 
