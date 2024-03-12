@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "sight-integrated"
+version = "0.1.0"
+description = ""
+authors = ["Airenik Melkonyan <melkonyanair@outlook.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+psycopg2-binary = "^2.9.9"
+django = "^5.0.3"
+djangorestframework = "^3.14.0"
+python-dotenv = "^1.0.1"
+openapi = "^1.1.0"
+celery = "^5.3.6"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.2.0"
+flower = "^2.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
