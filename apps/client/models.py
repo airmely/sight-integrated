@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -9,6 +10,8 @@ class Client(models.Model):
     phone_number = PhoneNumberField(
         unique=True,
         verbose_name="Номер телефона",
+        max_length=12,
+        region="RU",
     )
     mobile_operator_code = models.ForeignKey(
         to="MobileOperatorCode",
@@ -42,6 +45,10 @@ class Client(models.Model):
         return f"{self.phone_number} - {self.client_timezone}"
 
     def save(self, *args, **kwargs):
+
+        if Client.objects.filter(phone_number=self.phone_number).exists():
+            raise ValidationError("Номер телефона должен быть уникальным.")
+
         operator_code = "".join(filter(str.isdigit, str(self.phone_number)))
         operator_code = int(str(operator_code)[1:4])
         mobile_operator = MobileOperatorCode.objects.get(operator_code=operator_code)
