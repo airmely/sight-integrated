@@ -12,6 +12,8 @@ fi
 # Пересобираем Docker-Compose
 docker-compose up --build -d
 
+docker-compose exec web python manage.py migrate
+
 ## Удаляем Docker-образ с без имени
 docker rmi $(docker images -f "dangling=true" -q)
 
