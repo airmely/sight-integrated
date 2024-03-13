@@ -5,4 +5,4 @@ from .models import Client
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    pass
+    readonly_fields = ["mobile_operator_code"]
