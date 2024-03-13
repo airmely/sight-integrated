@@ -1,0 +1,9 @@
+celery
+django
+django-phonenumber-field
+djangorestframework[phonenumberslite]
+drf-yasg
+openapi
+phonenumberslite
+psycopg2-binary
+python-dotenv
