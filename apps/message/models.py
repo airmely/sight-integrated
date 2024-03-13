@@ -1,6 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from apps.mailing.models import Mailing
+from apps.client.models import Client
+
 
 class Message(models.Model):
     class Status(models.TextChoices):
@@ -15,10 +18,9 @@ class Message(models.Model):
         default=Status.QUEUED,
     )
     mailing = models.ForeignKey(
-        to="Mailing",
-        on_delete=models.CASCADE,
+        to=Mailing, on_delete=models.CASCADE, related_name="mailing_messages"
     )
     client = models.ForeignKey(
-        to="Client",
+        to=Client,
         on_delete=models.CASCADE,
     )
