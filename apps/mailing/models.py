@@ -1,11 +1,13 @@
 from django.db import models
-from django.db.models import Q
 
 
 class Mailing(models.Model):
-    start_datetime_mailing = models.DateTimeField()
-    end_datetime_mailing = models.DateTimeField()
-    message = models.TextField()
-    client_properties_filter = models.FilteredRelation(
-        "Tag", condition=Q(name="client_filter_tag")
+    start_datetime_mailing = models.DateTimeField(
+        verbose_name="Начало запуска рассылки",
+    )
+    end_datetime_mailing = models.DateTimeField(
+        verbose_name="Окончание рассылки",
+    )
+    message = models.TextField(
+        verbose_name="Сообщение",
     )
