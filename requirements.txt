@@ -1,8 +1,9 @@
-celery
-django
-django-phonenumber-field
-djangorestframework[phonenumberslite]
-drf-yasg
-phonenumberslite
-psycopg2-binary
-python-dotenv
+celery==5.3.6
+django==4.2.11
+django-phonenumber-field[phonenumberslite]==7.3.0
+djangorestframework==3.14.0
+drf-yasg==1.21.7
+phonenumberslite==8.13.32
+psycopg2-binary==2.9.9
+python-dotenv==1.0.1
+redis==5.0.3
