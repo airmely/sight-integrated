@@ -23,6 +23,7 @@ def create_tags(tags: List[str]) -> None:
         if not Tag.objects.filter(client_filter_tag=tag_name).exists():
             Tag.objects.create(client_filter_tag=tag_name)
         else:
+            print("Произошла ошибка.", tag_name)
             break
 
 
@@ -31,6 +32,7 @@ def create_mobile_operator_code(codes: List[int]) -> None:
         if not MobileOperatorCode.objects.filter(operator_code=code).exists():
             MobileOperatorCode.objects.create(operator_code=code)
         else:
+            print("Произошла ошибка.", code)
             break
 
 
@@ -67,6 +69,7 @@ def get_russian_timezones() -> None:
             try:
                 TimeZone.objects.create(timezone=tz)
             except IntegrityError:
+                print("Could not create ", tz)
                 break
 
 
@@ -93,94 +96,14 @@ if __name__ == "__main__":
         "Кулинария и гриль",
         "Финансы и инвестиции",
     ]
+    # fmt: off
     numbers = [
-        910,
-        911,
-        912,
-        913,
-        914,
-        915,
-        916,
-        917,
-        918,
-        919,
-        980,
-        981,
-        982,
-        983,
-        984,
-        985,
-        986,
-        987,
-        988,
-        989,
-        920,
-        921,
-        922,
-        923,
-        924,
-        925,
-        926,
-        927,
-        928,
-        929,
-        930,
-        931,
-        932,
-        933,
-        934,
-        935,
-        936,
-        937,
-        938,
-        939,
-        902,
-        903,
-        904,
-        905,
-        906,
-        960,
-        961,
-        962,
-        963,
-        964,
-        965,
-        966,
-        967,
-        968,
-        969,
-        900,
-        901,
-        902,
-        903,
-        904,
-        905,
-        996,
-        997,
-        998,
-        999,
-        901,
-        902,
-        992,
-        993,
-        901,
-        904,
-        996,
-        999,
-        993,
-        995,
-        901,
-        930,
-        995,
-        996,
-        900,
-        902,
-        977,
-        958,
-        991,
-        995,
-        996,
-        999,
+        900, 901, 902, 903, 904, 905, 906, 910, 911, 912, 913, 914,
+        915, 916, 917, 918, 919, 920, 921, 922, 923, 924, 925, 926,
+        927, 928, 929, 930, 931, 932, 933, 934, 935, 936, 937, 938,
+        939, 958, 960, 961, 962, 963, 964, 965, 966, 967, 968, 969,
+        977, 980, 981, 982, 983, 984, 985, 986, 987, 988, 989, 991,
+        992, 993, 995, 996, 997, 998, 999,
     ]
 
     try:
