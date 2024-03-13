@@ -1,0 +1,10 @@
+env.example
+poetry.lock
+pyproject.toml
+.idea/
+.gitignore
+.git/
+README.md
+Dockerfile
+docker-compose.yml
+.dockerignore
