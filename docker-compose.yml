@@ -16,11 +16,22 @@ services:
 
 
   redis:
-    image: redis:6.2.6
+    image: redis
     container_name: sight-redis
     ports:
       - "6379:6379"
     restart: on-failure
+
+  web:
+    build: .
+    command: python /usr/src/sight/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/sight
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    tty: true
 
 
 
