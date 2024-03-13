@@ -7,9 +7,9 @@ from apps.client.models import Client
 
 class Message(models.Model):
     class Status(models.TextChoices):
-        QUEUED = "QUEUED", _("QUEUED")
-        DELIVERY = "DELIVERY", _("DELIVERY")
-        FAILED = "FAILED", _("FAILED")
+        QUEUED = "QUEUED", _("В очереди")
+        FAILED = "FAILED", _("Не успешно")
+        DELIVERED = "DELIVERED", _("Доставлено")
 
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(
@@ -18,9 +18,19 @@ class Message(models.Model):
         default=Status.QUEUED,
     )
     mailing = models.ForeignKey(
-        to=Mailing, on_delete=models.CASCADE, related_name="mailing_messages"
+        to=Mailing,
+        on_delete=models.CASCADE,
+        related_name="mailing_messages",
     )
     client = models.ForeignKey(
         to=Client,
         on_delete=models.CASCADE,
     )
+
+    class Meta:
+        _splash = "Сообщени%s"
+        verbose_name = _splash % "е"
+        verbose_name_plural = _splash % "я"
+
+    def __str__(self):
+        return f"{self.client} - {self.mailing} - {self.status}"
