@@ -74,7 +74,7 @@ def get_russian_timezones() -> None:
 
 
 if __name__ == "__main__":
-    female_tags = [
+    tags = [
         "Мода",
         "Красота",
         "Здоровье и фитнес",
