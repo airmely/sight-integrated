@@ -12,7 +12,11 @@ fi
 # Пересобираем Docker-Compose
 docker-compose up --build -d
 
-docker-compose exec web python manage.py migrate
-
-## Удаляем Docker-образ без имени
-docker rmi $(docker images -f "dangling=true" -q)
+# Проверяем наличие образов без имени
+if [ "$(docker images -f "dangling=true" -q)" ]; then
+    # Если есть образы без имени, удаляем их
+    docker rmi $(docker images -f "dangling=true" -q)
+else
+    # Если нет образов без имени, выводим сообщение об этом
+    echo "No dangling images found."
+fi

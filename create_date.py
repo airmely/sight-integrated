@@ -74,7 +74,7 @@ def get_russian_timezones() -> None:
 
 
 if __name__ == "__main__":
-    tags = [
+    start_tags = [
         "Мода",
         "Красота",
         "Здоровье и фитнес",
@@ -107,7 +107,7 @@ if __name__ == "__main__":
     ]
 
     try:
-        create_tags(female_tags)
+        create_tags(start_tags)
         create_mobile_operator_code(numbers)
         get_russian_timezones()
         print("-" * 30)

@@ -9,7 +9,7 @@ COPY ./requirements.txt /usr/src/requirements.txt
 
 RUN apt-get update && \
     apt-get upgrade && \
-    pip install --upgrade pip && \
-    pip install -r /usr/src/requirements.txt
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY . /urs/src/sight
