@@ -40,6 +40,10 @@ THIRD_PARTY_APPS = [
     "phonenumber_field",
 ]
 
+# FOR DEVELOPMENT ONLY
+if DEBUG:
+    THIRD_PARTY_APPS += ["django_extensions"]
+
 
 INSTALLED_APPS = CONTRIB_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
@@ -127,7 +131,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Moscow"
 
 USE_I18N = True
 
@@ -142,3 +146,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # REST FRAMEWORK
 REST_FRAMEWORK = {}
+
+# EXTERNAL SERVICE
+API_TOKEN = os.getenv("API_TOKEN")
+URL_EXTERNAL_SERVICE = os.getenv("URL_EXTERNAL_SERVICE")
