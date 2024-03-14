@@ -15,6 +15,7 @@ celery = "^5.3.6"
 drf-yasg = "^1.21.7"
 django-phonenumber-field = {extras = ["phonenumberslite"], version = "^7.3.0"}
 redis = "^5.0.3"
+requests = "^2.31.0"
 
 
 [tool.poetry.group.dev.dependencies]
