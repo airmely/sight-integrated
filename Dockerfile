@@ -11,5 +11,6 @@ RUN apt-get update && \
     apt-get upgrade && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+RUN python -m venv venv
 
 COPY . /urs/src/sight
