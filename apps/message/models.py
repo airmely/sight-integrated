@@ -16,15 +16,20 @@ class Message(models.Model):
         max_length=20,
         choices=Status.choices,
         default=Status.QUEUED,
+        verbose_name="Статус",
     )
     mailing = models.ForeignKey(
         to=Mailing,
         on_delete=models.CASCADE,
         related_name="mailing_messages",
+        verbose_name="Рассылка",
     )
     client = models.ForeignKey(
         to=Client,
         on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        verbose_name="Клиент",
     )
 
     class Meta:
