@@ -5,4 +5,4 @@ from apps.mailing.models import Mailing
 
 @admin.register(Mailing)
 class MailingAdmin(admin.ModelAdmin):
-    pass
+    filter_horizontal = ("tag", "mobile_operator_code")
