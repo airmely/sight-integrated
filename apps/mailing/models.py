@@ -1,5 +1,6 @@
-from django.core.exceptions import ValidationError
 from django.db import models
+
+from apps.client.models import Tag, MobileOperatorCode
 
 
 class Mailing(models.Model):
@@ -17,6 +18,14 @@ class Mailing(models.Model):
     )
     message = models.TextField(
         verbose_name="Сообщение",
+    )
+    mobile_operator_code = models.ManyToManyField(
+        to=MobileOperatorCode,
+        verbose_name="Мобильный код оператора",
+    )
+    tag = models.ManyToManyField(
+        to=Tag,
+        verbose_name="Тэг",
     )
 
     class Meta:
