@@ -5,7 +5,21 @@ from . import views
 
 router = routers.SimpleRouter()
 
-router.register("clients", views.ClientViewSet, basename="clients")
+router.register(
+    "clients",
+    views.ClientViewSet,
+    basename="clients",
+)
+router.register(
+    "tags",
+    views.TagViewSet,
+    basename="tags",
+)
+router.register(
+    "mobile_operator_code",
+    views.MobileOperatorCodeViewSet,
+    basename="mobile_operator",
+)
 
 app_name = "client"
 
