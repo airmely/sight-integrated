@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from phonenumber_field.validators import validate_international_phonenumber
 
-from apps.client.models import Client
+from apps.client.models import Client, Tag, MobileOperatorCode
 
 
 class ClientSerializer(serializers.ModelSerializer):
@@ -16,3 +16,16 @@ class ClientSerializer(serializers.ModelSerializer):
                 "allow_null": False,
             }
         }
+
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = "__all__"
+
+
+class MobileOperatorCodeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MobileOperatorCode
+        fields = "__all__"
