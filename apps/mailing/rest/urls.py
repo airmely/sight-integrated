@@ -1,13 +1,19 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
 
-from apps.mailing.rest.views import ExternalServiceView
+from apps.mailing.rest import views
+
+router = routers.SimpleRouter()
+
+router.register("mailing", views.MailingViewSet, basename="mailing-list")
 
 app_name = "mailing"
 
 urlpatterns = [
+    path("", include(router.urls)),
     path(
         "external-service/<int:msg_id>/",
-        ExternalServiceView.as_view(),
+        views.ExternalServiceView.as_view(),
         name="external-mail",
     ),
 ]
