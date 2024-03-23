@@ -16,7 +16,7 @@ from apps.mailing.services import (
 logger = logging.getLogger(__name__)
 
 
-# @shared_task
+@shared_task
 def process_message_for_client(mailing):
     try:
         clients = get_client_by_filter_of_tag_and_code_mobile_operator(
@@ -44,16 +44,15 @@ def process_send_mailing_to_client(client: Client, mailing) -> None:
     headers = {"Authorization": f"Bearer {settings.API_TOKEN}"}
     if serializer.is_valid():
         response = requests.post(
-            f"{settings.URL_EXTERNAL_SERVICE}{mailing.id}",
+            f"{settings.URL_EXTERNAL_SERVICE}1",
             json=serializer.validated_data,
             headers=headers,
         )
-        mailing_instance = Mailing.objects.get(id=mailing.id)
         if response.status_code != 200:
             Message.objects.create(
-                client=client, mailing=mailing_instance, status=Message.Status.FAILED
+                client=client, mailing=mailing, status=Message.Status.FAILED
             )
         else:
             Message.objects.create(
-                client=client, mailing=mailing_instance, status=Message.Status.DELIVERED
+                client=client, mailing=mailing, status=Message.Status.DELIVERED
             )
