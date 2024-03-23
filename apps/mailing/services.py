@@ -11,13 +11,9 @@ def get_client_by_filter_of_tag_and_code_mobile_operator(
     tags: List[Tag],
     mobile_operator: List[MobileOperatorCode],
 ) -> List[Client]:
-    clients = (
-        Client.objects.filter(
-            Q(tag__in=tags) | Q(mobile_operator_code__in=mobile_operator)
-        )
-        .distinct()
-        .only("phone_number")
-    )
+    clients = Client.objects.filter(
+        Q(tag__in=tags) | Q(mobile_operator_code__in=mobile_operator)
+    ).distinct()
     return clients
 
 
